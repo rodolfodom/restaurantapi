@@ -4,6 +4,8 @@ const { Router } = require("express"),
 
 const router = Router();
 
+//Obtener los datos de todos los productos
+
 router.get("/", async (req, res) => {
   try {
     const db = await connectDB(),
@@ -13,6 +15,10 @@ router.get("/", async (req, res) => {
     res.send("No se pudieron cargar los productos");
   }
 });
+
+//
+
+//Agregar un producto
 
 router.post("/", async (req, res) => {
   const data = {
@@ -28,6 +34,8 @@ router.post("/", async (req, res) => {
   res.json(answer);
 });
 
+//Actualizar un producto
+
 router.put("/:id", async (req, res) => {
   const { id } = req.params,
     updateData = {
@@ -42,7 +50,18 @@ router.put("/:id", async (req, res) => {
     answer = await db
       .collection("products")
       .updateOne({ _id: ObjectID(id) }, { $set: updateData });
-  console.log(answer);
+  res.json({
+    message: `El Producto con el id: ${id} a sido actualizado`,
+  });
+});
+
+//Eliminar producto
+
+router.delete("/:id", async (req, res) => {
+  const { id } = req.params,
+    db = await connectDB();
+  await db.collection("products").deleteOne({ _id: ObjectID(id) });
+  res.json(`El producto con el id: ${id} ha sido elimnado`);
 });
 
 module.exports = router;

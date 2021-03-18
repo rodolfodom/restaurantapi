@@ -4,7 +4,8 @@ const { MongoClient } = require("mongodb");
 async function connectDB() {
   try {
     const client = await MongoClient.connect(
-      process.env.DATABASE_CONNECTION_STRING
+      process.env.DATABASE_CONNECTION_STRING,
+      { useUnifiedTopology: true }
     );
     const db = client.db("restaurant");
     console.log("Successful database connection");
