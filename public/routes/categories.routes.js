@@ -1,8 +1,8 @@
 const { Router } = require("express"),
   router = Router();
 
-router.get("/", (req, res)=>{
-    try {
+router.get("/", async (req, res) => {
+  try {
     const db = await connectDB(),
       categories = await db.collection("categories").find({}).toArray();
     res.json(categories);
