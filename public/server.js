@@ -6,6 +6,7 @@ const express = require("express"),
 
 const indexRoutes = require("./routes/index.routes.js");
 const productsRoutes = require("./routes/products.routes.js");
+const categoriesRoutes = require("./routes/categories.routes.js");
 
 //settings
 app.set("port", process.env.PORT || port);
@@ -15,5 +16,6 @@ app.use(express.json());
 
 app.use(indexRoutes);
 app.use("/products", productsRoutes);
+app.use("/categories", categoriesRoutes);
 
 module.exports = app;

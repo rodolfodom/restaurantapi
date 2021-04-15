@@ -10,3 +10,5 @@ router.get("/", async (req, res) => {
     res.send("No se pudieron cargar las categorias");
   }
 });
+
+module.exports = router;
