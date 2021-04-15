@@ -1,5 +1,7 @@
 const { Router } = require("express"),
-  router = Router();
+  connectDB = require("../database.js");
+
+router = Router();
 
 router.get("/", async (req, res) => {
   try {
